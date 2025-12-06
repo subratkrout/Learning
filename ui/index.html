@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UI - 3 Tier App</title>
+</head>
+<body>
+  <h1>3-Tier App UI</h1>
+  <div id="status">Checking API...</div>
+  <script>
+    async function check() {
+      try {
+        const res = await fetch('http://localhost:8000/health');
+        const data = await res.json();
+        document.getElementById('status').innerText = 'API status: ' + JSON.stringify(data);
+      } catch (e) {
+        document.getElementById('status').innerText = 'API unreachable: ' + e;
+      }
+    }
+    check();
+  </script>
+</body>
+</html>
